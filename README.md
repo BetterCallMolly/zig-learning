@@ -18,6 +18,6 @@ I'm happy to receive any feedback, so feel free to open an issue for any suggest
         - [std::heap::page_allocator](https://ziglang.org/documentation/master/std/#A;std:heap.page_allocator)
         - [defer](https://ziglang.org/documentation/master/#defer)
     - [x] [yes](./coreutils-zig/yes.zig) (no arguments, can output 10.4 GB/s on my machine, probably bottlenecked by `pv`)
-        - [switch](https://ziglang.org/documentation/master/#switch)
         - [std::io::writer](https://ziglang.org/documentation/master/std/#A;std:io.Writer)
         - [std::io::BufferedWriter](https://ziglang.org/documentation/master/std/#A;std:io.BufferedWriter)
+    - [ ] [wc][./coreutils-zig/wc.zig] (reads files / stdin if no file were provided)
