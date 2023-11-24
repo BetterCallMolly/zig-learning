@@ -17,7 +17,7 @@ I'm happy to receive any feedback, so feel free to open an issue for any suggest
         - [std::time::sleep](https://ziglang.org/documentation/master/std/#A;std:time.sleep)
         - [std::heap::page_allocator](https://ziglang.org/documentation/master/std/#A;std:heap.page_allocator)
         - [defer](https://ziglang.org/documentation/master/#defer)
-    - [x] [yes](./coreutils-zig/yes.zig) (no arguments, can output 10.1 GB/s on my machine, probably bottlenecked by `pv`)
+    - [x] [yes](./coreutils-zig/yes.zig) (no arguments, can output 10.4 GB/s on my machine, probably bottlenecked by `pv`)
         - [switch](https://ziglang.org/documentation/master/#switch)
         - [std::io::writer](https://ziglang.org/documentation/master/std/#A;std:io.Writer)
-        - > NOTE: It is surely smarter to use [std::io::BufferedWriter](https://ziglang.org/documentation/master/std/#A;std:io.BufferedWriter) without buffering the whole output at runtime
+        - [std::io::BufferedWriter](https://ziglang.org/documentation/master/std/#A;std:io.BufferedWriter)
