@@ -12,6 +12,8 @@ fn get_file_stats(file: std.fs.File) !std.meta.Tuple(&.{ u64, u64, u64 }) {
     var lines: u64 = 0;
     var words: u64 = 0;
     var chars: u64 = 0;
+
+    var word_size: u64 = 0;
     while (true) { // read until EOF / Error
         const read_bytes = file.readAll(&buffer) catch |err| {
             return err;
@@ -23,14 +25,26 @@ fn get_file_stats(file: std.fs.File) !std.meta.Tuple(&.{ u64, u64, u64 }) {
             chars += 1;
             switch (byte) {
                 '\t', ' ' => {
-                    words += 1;
+                    if (word_size > 0) {
+                        words += 1;
+                        word_size = 0;
+                    }
                 },
                 '\n' => {
                     lines += 1;
+                    if (word_size > 0) {
+                        words += 1;
+                        word_size = 0;
+                    }
                 },
-                else => {},
+                else => {
+                    word_size += 1;
+                },
             }
         }
+    }
+    if (word_size > 0) {
+        words += 1;
     }
     total_lines += lines;
     total_words += words;
