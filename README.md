@@ -20,7 +20,7 @@ I'm happy to receive any feedback, so feel free to open an issue for any suggest
     - [x] [yes](./coreutils-zig/yes.zig) (no arguments, can output 10.4 GB/s on my machine, probably bottlenecked by `pv`)
         - [std::io::writer](https://ziglang.org/documentation/master/std/#A;std:io.Writer)
         - [std::io::BufferedWriter](https://ziglang.org/documentation/master/std/#A;std:io.BufferedWriter)
-    - [x] [wc][./coreutils-zig/wc.zig] (count bytes/lines/words for all passed files / stdin if no file were provided)
+    - [x] [wc](./coreutils-zig/wc.zig) (count bytes/lines/words for all passed files / stdin if no file were provided)
         - [std::process:args](https://ziglang.org/documentation/master/std/#A;std:process.args)
         - [std.fs.File](https://ziglang.org/documentation/master/std/#A;std:fs.File)
         - [std.fs.openFileAbsolute](https://ziglang.org/documentation/master/std/#A;std:fs.openFileAbsolute)
