@@ -11,6 +11,7 @@ I'm happy to receive any feedback, so feel free to open an issue for any suggest
 - [coreutils-zig](./coreutils-zig) : Implementation of some `coreutils` in Zig (wip / not faithful to real coreutils)
     - [x] [false](./coreutils-zig/false.zig) / [true](./coreutils-zig/true.zig) (ok it's not really impressive)
     - [x] [sleep](./coreutils-zig/sleep.zig), without suffix support (`s`, `m`, `h`, `d`)
+        - [std::process::args](https://ziglang.org/documentation/master/std/#A;std:process.args)
         - [std::ArrayList](https://ziglang.org/documentation/master/std/#A;std:ArrayList)
         - [std::fmt::parseUnsigned](https://ziglang.org/documentation/master/std/#A;std:fmt.parseUnsigned)
         - [std::time::sleep](https://ziglang.org/documentation/master/std/#A;std:time.sleep)
