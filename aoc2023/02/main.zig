@@ -111,15 +111,74 @@ fn parse_line(line: []const u8) bool {
     return true;
 }
 
+fn parse_line_p2(line: []const u8) std.meta.Tuple(&.{ u64, u64, u64, usize }) {
+    var red: u64 = 0;
+    var green: u64 = 0;
+    var blue: u64 = 0;
+
+    var i: usize = 0;
+    while (i < line.len) {
+        const n_index = get_next_number(line[i..]);
+        if (n_index[0] != 0) {
+            i += n_index[1] + 1;
+        }
+        const word = get_next_word(line[i..]);
+        // if (word != Word.UNKNOWN) {
+        //     std.debug.print("[{any} x {d}] Line: {s}\n", .{ word, n_index[0], line[i..] });
+        // }
+        switch (word) {
+            Word.RED => {
+                red += n_index[0];
+                i += 3;
+            },
+            Word.GREEN => {
+                green += n_index[0];
+                i += 5;
+            },
+            Word.BLUE => {
+                blue += n_index[0];
+                i += 4;
+            },
+            Word.GAME_END => {
+                return .{ red, green, blue, i };
+            },
+            else => {
+                i += 1;
+            },
+        }
+    }
+
+    return .{ red, green, blue, i };
+}
+
 fn part_two() !void {
-    var file = try std.fs.cwd().openFile("./input2.txt", .{});
+    var file = try std.fs.cwd().openFile("./input.txt", .{});
     defer file.close();
     var buf_reader = std.io.bufferedReader(file.reader());
     var in_stream = buf_reader.reader();
     var buf: [1024]u8 = undefined;
+    var n: u128 = 0;
     while (try in_stream.readUntilDelimiterOrEof(&buf, '\n')) |line| {
-        _ = line;
+        var offset: usize = 0;
+        var min_red: u64 = 0;
+        var min_green: u64 = 0;
+        var min_blue: u64 = 0;
+        while (offset < line.len) {
+            const parsed = parse_line_p2(line[offset..]);
+            offset += parsed[3] + 1;
+            if (parsed[0] > min_red and parsed[0] != 0) {
+                min_red = parsed[0];
+            }
+            if (parsed[1] > min_green and parsed[1] != 0) {
+                min_green = parsed[1];
+            }
+            if (parsed[2] > min_blue and parsed[2] != 0) {
+                min_blue = parsed[2];
+            }
+        }
+        n += min_red * min_green * min_blue;
     }
+    try std.fmt.format(std.io.getStdOut().writer(), "{d}\n", .{n});
 }
 
 fn part_one() !void {
@@ -151,5 +210,5 @@ fn part_one() !void {
 
 pub fn main() !void {
     try part_one();
-    // try part_two();
+    try part_two();
 }
